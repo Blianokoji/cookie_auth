@@ -11,24 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Check out code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Set up Go
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.23'  # match your local Go version (or latest stable)
+          go-version: '1.23'  # or match your local Go version
 
-      # 3️⃣ Verify dependencies
       - name: Verify dependencies
         run: go mod tidy
 
-      # 4️⃣ Build
       - name: Build project
-        run: go build -v -o bin/cookie-auth ./...
+        run: go build -v -o bin/cookie-auth .
 
-      # 5️⃣ Run tests
       - name: Run unit tests
         run: go test -v ./internal/...
